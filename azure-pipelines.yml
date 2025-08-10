@@ -1,0 +1,40 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js 20'
+
+  - script: |
+      npm ci
+      npm run build
+    displayName: 'Install dependencies and build'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
+      replaceExistingArchive: true
+    displayName: 'Archive compiled app'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+    displayName: 'Publish artifact'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'sc-azure-connectionwithnature' 
+      appType: 'webApp' 
+      appName: 'connectionWithNature'
+      package: '$(Build.ArtifactStagingDirectory)/app.zip'
+    displayName: 'Deploy to Azure Web App'
