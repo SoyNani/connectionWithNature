@@ -8,7 +8,7 @@ import { faArrowRight, faEnvelope, faMapLocation, faMobilePhone, faPhone, faPhon
 
 export default function Footer() {
     return (
-        <section className="w-full bg-[#052E16] flex justify-center items-center flex-col">
+        <section className="w-full bg-[#052E16] flex justify-center items-center flex-col overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[60vw] py-24  text-[var(--mint-fresh)]">
                 <div className="flex flex-col gap-4">
                     <p className="text-[25px] font-bold ">{title}</p>

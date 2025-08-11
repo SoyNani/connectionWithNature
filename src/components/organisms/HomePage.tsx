@@ -8,7 +8,7 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomePage() {
   return(
-    <section className="min-h-screen w-full bg-[url('/fondo.svg')] bg-cover mb-8 flex justify-center items-center">
+    <section className="h-screen w-full bg-[url('/fondo.svg')] bg-cover flex justify-center items-center overflow-hidden ">
         <div className="flex justify-center items-center h-full">
           <div className="flex flex-col items-center justify-center w-[60vw] gap-8 text-center">
             <Title className="">

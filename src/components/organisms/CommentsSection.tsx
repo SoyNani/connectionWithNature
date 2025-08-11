@@ -70,7 +70,7 @@ export default function CommentsSection(){
     }, [api])
     
     return (
-    <section className="bg-[var(--deep-forest)]">
+    <section className="bg-[var(--deep-forest)] overflow-hidden h-screen ">
       <div className="flex flex-col justify-center bg-[var(--deep-forest)] text-[var(--frosted-mint)] items-center pt-20">
         <div className="w-[45vw]"><LandingTitle>{sectionCommentsTitle}</LandingTitle></div>
         <p className="w-[45vw] text-center font-light text-[var(--frosted-mint)]">{sectionCommentSubTitle}</p>

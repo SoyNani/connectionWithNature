@@ -6,12 +6,12 @@ import SectionContact from "../organisms/SectionContact";
 
 export default function Template(){
     return(
-        <>
+        <section className="h-auto w-full overflow-hidden">
             <HomePage />
             <FeaturedDestinations />
             <CommentsSection />
             <SectionContact />
             <Footer />
-        </>
+        </section>
     )
 }
