@@ -13,8 +13,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         readMore:'bg-transparent text-[var(--primary-forest)] hover:text-[var(--deep-forest)] active:text-[var(--sun-honey)] ',
         forest: "bg-[var(--primary-forest)] rounded-full font-[16px] text-white w-[200px] hover:shadow-[0_0px_14px_var(--primary-forest)] active:bg-[var(--sun-honey)] active:shadow-[0_0px_14px_var(--sun-honey)] border border-transparent",
-        orange: "bg-[var(--sun-honey)] rounded-full font-[16px] text-white w-[160px] hover:shadow-[0_0px_14px_var(--sun-honey)] active:bg-[var(--amber)] active:shadow-[0_0px_14px_var(--amber)] border border-transparent",
-        
+        orange: "bg-[var(--sun-honey)] rounded-full font-[16px] text-white w-[160px] hover:shadow-[0_0px_14px_var(--sun-honey)] active:bg-[var(--amber)] active:shadow-[0_0px_14px_var(--amber)] border border-transparent disabled:opacity-100 disabled:bg-[var(--sun-honey)] disabled:text-white",
       },
       size: {
         default: "h-[44px] px-4 py-2 has-[>svg]:px-3",

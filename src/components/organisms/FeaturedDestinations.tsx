@@ -1,16 +1,58 @@
+"use client"
+
 import { featuredDestinations, featuredDestinationsSubTitle } from "@/constants/homeText";
 import LandingTitle from "../atoms/LandingTitle";
 import { NorwayCard } from "../molecules/NorwayCard";
+import { motion } from "framer-motion";
 
 export default function FeaturedDestinations() {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.4,
+                when: "beforeChildren",
+                staggerChildren: 0.15
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 }, 
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { 
+                duration: 0.5,
+                ease: "easeOut" 
+            }
+        }
+    };
+
     return (
-        <section className="min-h-screen w-full bg-[var(--frosted-mint)] mb-[50px] overflow-hidden">
-            <div className="flex flex-col justify-center items-center p-20 ">
-                <LandingTitle >{featuredDestinations}</LandingTitle>
-                <p className="text-center font-normal w-[40vw] ">{featuredDestinationsSubTitle}</p>
-            </div>
-            <section className="flex justify-center items-center mb-8 flex-col gap-5">
-                <div className="flex gap-5">
+        <motion.section 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="min-h-screen w-full bg-[var(--frosted-mint)] mb-[50px] overflow-hidden"
+        >
+            <motion.div 
+                className="flex flex-col justify-center items-center p-20"
+            >
+                <LandingTitle>{featuredDestinations}</LandingTitle>
+                <p className="text-center font-normal w-[40vw]">{featuredDestinationsSubTitle}</p>
+            </motion.div>
+            
+            <motion.section 
+                variants={containerVariants}
+                className="flex justify-center items-center mb-8 flex-col gap-5"
+            >
+                <motion.div 
+                    className="flex gap-5"
+                    custom={0} 
+                >
                     <NorwayCard 
                         imageUrl="https://connection-with-nature.s3.us-east-1.amazonaws.com/fiordosNoruegos.svg"
                         location="Noruega"
@@ -23,8 +65,12 @@ export default function FeaturedDestinations() {
                         title="Gran Cañón"
                         description="Antiguas capas de tierra cuentan historias que abarcan millones de años en esta impresionante obra maestra geológica."
                     />
-                </div>
-                <div className="flex gap-5">
+                </motion.div>
+                
+                <motion.div 
+                    className="flex gap-5"
+                    custom={1} 
+                >
                     <NorwayCard 
                         imageUrl="https://connection-with-nature.s3.us-east-1.amazonaws.com/parqueTayrona.svg"
                         location="Colombia"
@@ -37,8 +83,12 @@ export default function FeaturedDestinations() {
                         title="Alpes Suizos"
                         description="Picos nevados perforan el cielo sobre valles color esmeralda salpicados de flores silvestres y lagos de aguas cristalinas."
                     />
-                </div>
-                <div className="flex gap-5">
+                </motion.div>
+                
+                <motion.div
+                    className="flex gap-5"
+                    custom={2} 
+                >
                     <NorwayCard 
                         imageUrl="https://connection-with-nature.s3.us-east-1.amazonaws.com/coral.svg"
                         location="Australia"
@@ -51,8 +101,8 @@ export default function FeaturedDestinations() {
                         title="Selva Amazónica"
                         description="Los pulmones de nuestro planeta vibran con vida en esta vasta catedral verde de árboles centenarios y exótica fauna."
                     />
-                </div>
-            </section>
-        </section>
+                </motion.div>
+            </motion.section>
+        </motion.section>
     )
 }

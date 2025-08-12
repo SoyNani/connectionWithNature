@@ -10,8 +10,30 @@ import {
 import Autoplay from "embla-carousel-autoplay"
 import { useEffect, useRef, useState } from "react";
 import { CommentsCard } from "../molecules/CommentsCard";
+import { motion } from "framer-motion";
 
 export default function CommentsSection(){
+    const containerVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.8,
+                when: "beforeChildren",
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5 }
+        }
+    };
     const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }))
     const [api, setApi] = useState<any>();
     const [current, setCurrent] = useState(0);
@@ -70,7 +92,7 @@ export default function CommentsSection(){
     }, [api])
     
     return (
-    <section className="bg-[var(--deep-forest)] overflow-hidden h-screen ">
+    <section className="bg-[var(--deep-forest)] overflow-hidden ">
       <div className="flex flex-col justify-center bg-[var(--deep-forest)] text-[var(--frosted-mint)] items-center pt-20">
         <div className="w-[45vw]"><LandingTitle>{sectionCommentsTitle}</LandingTitle></div>
         <p className="w-[45vw] text-center font-light text-[var(--frosted-mint)]">{sectionCommentSubTitle}</p>
