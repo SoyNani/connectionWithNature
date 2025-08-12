@@ -49,7 +49,15 @@ export default function HomePage() {
               <Subtitle className="mt-8">{homeSubtitle}</Subtitle>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Button variant="forest">
+              <Button 
+                variant="forest"
+                onClick={() => {
+                  document.getElementById('contact-section')?.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }}
+              >
                 Comienza tu viaje
               </Button>
             </motion.div>

@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const nextConfig = {
+  output: 'standalone',
+  images: {
+    domains: [
+      'connection-with-nature.s3.us-east-1.amazonaws.com',
+      'tu-dominio.vercel.app'
+    ],
+  },
+}
 
 export default nextConfig;

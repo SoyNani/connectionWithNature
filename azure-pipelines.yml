@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  CI: true
+
 steps:
   - task: NodeTool@0
     inputs:
@@ -13,28 +16,13 @@ steps:
   - script: |
       npm ci
       npm run build
-    displayName: 'Install dependencies and build'
+      npm run test # Asegúrate de tener scripts de prueba
+    displayName: 'Install, build and test'
+    env:
+      NEXT_PUBLIC_ENV: test
 
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
-      replaceExistingArchive: true
-    displayName: 'Archive compiled app'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
-    displayName: 'Publish artifact'
-
-  - task: AzureWebApp@1
-    inputs:
-      azureSubscription: 'sc-azure-connectionwithnature' 
-      appType: 'webApp' 
-      appName: 'connectionWithNature'
-      package: '$(Build.ArtifactStagingDirectory)/app.zip'
-    displayName: 'Deploy to Azure Web App'
+  - script: |
+      echo "##vso[task.setvariable variable=BUILD_STATUS]success"
+      echo "Build completed successfully - Ready for Vercel deployment"
+    displayName: 'Set build status'
+    condition: succeeded()
